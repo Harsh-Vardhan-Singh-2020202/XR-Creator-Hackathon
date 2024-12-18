@@ -1,0 +1,40 @@
+ManifestFileVersion: 0
+CRC: 3401736756
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: ardebugmenu
+      Dependencies: {}
+    Info_1:
+      Name: charminar
+      Dependencies: {}
+    Info_2:
+      Name: gatewayofindia
+      Dependencies: {}
+    Info_3:
+      Name: indiagate
+      Dependencies: {}
+    Info_4:
+      Name: konarktemple
+      Dependencies: {}
+    Info_5:
+      Name: lotustemple
+      Dependencies: {}
+    Info_6:
+      Name: qutubminar
+      Dependencies: {}
+    Info_7:
+      Name: redfort
+      Dependencies: {}
+    Info_8:
+      Name: safdarjungtomb
+      Dependencies: {}
+    Info_9:
+      Name: tajmahal
+      Dependencies: {}
+    Info_10:
+      Name: skybox-tiergarten-polyhaven
+      Dependencies: {}
+    Info_11:
+      Name: skybox-test-anonymous
+      Dependencies: {}

@@ -1,5 +1,21 @@
 {
   "dependencies": {
+    "com.huggingface.api": {
+      "version": "https://github.com/huggingface/unity-api.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.textmeshpro": "3.0.6",
+        "com.unity.nuget.newtonsoft-json": "3.0.1"
+      },
+      "hash": "8d0231780ead66aba3ad5ad3373158d5de0bc533"
+    },
+    "com.lmnt.unity": {
+      "version": "file:com.lmnt.unity",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.burst": {
       "version": "1.8.11",
       "depth": 1,
@@ -55,27 +71,15 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.unity.learn.iet-framework": {
-      "version": "3.1.3",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.editorcoroutines": "1.0.0",
-        "com.unity.settings-manager": "1.0.3"
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.learn.iet-framework.authoring": {
-      "version": "1.2.2",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.learn.iet-framework": "3.1.3"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.mathematics": {
       "version": "1.2.6",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
@@ -119,13 +123,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.settings-manager": {
-      "version": "2.0.1",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
     "com.unity.shadergraph": {
       "version": "14.0.9",
       "depth": 1,
@@ -147,7 +144,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.textmeshpro": {
-      "version": "3.0.6",
+      "version": "3.0.9",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -177,7 +174,7 @@
       }
     },
     "com.unity.visualscripting": {
-      "version": "1.9.2",
+      "version": "1.9.5",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -187,21 +184,21 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.arcore": {
-      "version": "5.1.4",
+      "version": "5.1.5",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.xr.core-utils": "2.1.0",
         "com.unity.xr.management": "4.0.1",
-        "com.unity.xr.arfoundation": "5.1.4",
+        "com.unity.xr.arfoundation": "5.1.5",
         "com.unity.modules.androidjni": "1.0.0",
         "com.unity.modules.unitywebrequest": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.arfoundation": {
-      "version": "5.1.4",
-      "depth": 0,
+      "version": "5.1.5",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.ugui": "1.0.0",
@@ -218,13 +215,13 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.arkit": {
-      "version": "5.1.4",
+      "version": "5.1.5",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.xr.core-utils": "2.1.0",
         "com.unity.xr.management": "4.0.1",
-        "com.unity.xr.arfoundation": "5.1.4",
+        "com.unity.xr.arfoundation": "5.1.5",
         "com.unity.editorcoroutines": "1.0.0"
       },
       "url": "https://packages.unity.com"

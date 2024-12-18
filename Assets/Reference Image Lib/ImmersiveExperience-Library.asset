@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: ImmersiveExperience-Library
+  m_EditorClassIdentifier: 
+  m_GuidLow: 5311219401454159102
+  m_GuidHigh: 763197589362017976
+  m_DataStore:
+    m_Storage: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 5098858724523454954
+      m_GuidHigh: 1401183839062556047
+    m_SerializedTextureGuid:
+      m_GuidLow: 4000505895266343186
+      m_GuidHigh: 12666753756572933531
+    m_Size: {x: 0.08891752, y: 0.05}
+    m_SpecifySize: 1
+    m_Name: Immersive - DandiMarch
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5214328921824589415
+      m_GuidHigh: 339937990790790549
+    m_SerializedTextureGuid:
+      m_GuidLow: 3833699244288674377
+      m_GuidHigh: 7593502003332906058
+    m_Size: {x: 0.057662837, y: 0.05}
+    m_SpecifySize: 1
+    m_Name: Immersive - StatueOfUnity
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5696103252046387270
+      m_GuidHigh: 16592985807065589667
+    m_SerializedTextureGuid:
+      m_GuidLow: 7968121777142874542
+      m_GuidHigh: 1270491021923123241
+    m_Size: {x: 0.05, y: 0.05}
+    m_SpecifySize: 1
+    m_Name: Immersive - FictionalIndianWarrior
+    m_Texture: {fileID: 0}

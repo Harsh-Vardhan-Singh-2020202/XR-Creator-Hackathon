@@ -1,0 +1,66 @@
+ManifestFileVersion: 0
+CRC: 1503940174
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7e5bb4f2fe51e8f19c6b13c7f84c104d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 168e0d61035374549e0ce5b12386db29
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 7e5bb4f2fe51e8f19c6b13c7f84c104d
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: b309761041ee54265b7f9a8c0f373dab, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ec4ca11eca8dc90448decf57792dd0b4, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Unity.XR.Interaction.Toolkit
+  ClassName: UnityEngine.XR.Interaction.Toolkit.ActivateEvent
+- AssemblyName: Unity.XR.Interaction.Toolkit
+  ClassName: UnityEngine.XR.Interaction.Toolkit.DeactivateEvent
+- AssemblyName: Unity.XR.Interaction.Toolkit
+  ClassName: UnityEngine.XR.Interaction.Toolkit.FocusEnterEvent
+- AssemblyName: Unity.XR.Interaction.Toolkit
+  ClassName: UnityEngine.XR.Interaction.Toolkit.FocusExitEvent
+- AssemblyName: Unity.XR.Interaction.Toolkit
+  ClassName: UnityEngine.XR.Interaction.Toolkit.HoverEnterEvent
+- AssemblyName: Unity.XR.Interaction.Toolkit
+  ClassName: UnityEngine.XR.Interaction.Toolkit.HoverExitEvent
+- AssemblyName: Unity.XR.Interaction.Toolkit
+  ClassName: UnityEngine.XR.Interaction.Toolkit.InteractionLayerMask
+- AssemblyName: Unity.XR.Interaction.Toolkit
+  ClassName: UnityEngine.XR.Interaction.Toolkit.SelectEnterEvent
+- AssemblyName: Unity.XR.Interaction.Toolkit
+  ClassName: UnityEngine.XR.Interaction.Toolkit.SelectExitEvent
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+Assets:
+- Assets/Prefabs/Monument - Gateway Of India.prefab
+Dependencies: []

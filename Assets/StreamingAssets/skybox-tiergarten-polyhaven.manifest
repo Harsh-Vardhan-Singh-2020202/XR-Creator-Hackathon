@@ -1,0 +1,30 @@
+ManifestFileVersion: 0
+CRC: 3879643060
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 275c0748b607af551d3358a63915011e
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1104871922333c9125c167f6bb61b3d1
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 275c0748b607af551d3358a63915011e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 45
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 89
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Prefabs/Skybox - Tiergarten _ Polyhaven.prefab
+Dependencies: []
