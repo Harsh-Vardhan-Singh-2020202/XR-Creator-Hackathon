@@ -231,4 +231,22 @@ public class SkyboxManager : MonoBehaviour
             inputField.text = GUIUtility.systemCopyBuffer;
         }
     }
+
+    // Move to the next skybox in the list (with wrapping)
+    public void NextSkybox()
+    {
+        int currentIndex = skyboxDropdown.value;
+        int nextIndex = (currentIndex + 1) % skyboxes.Count;  // Wrap around to the first if at the last
+        skyboxDropdown.value = nextIndex;
+        OnSkyboxChanged(nextIndex);
+    }
+
+    // Move to the previous skybox in the list (with wrapping)
+    public void PreviousSkybox()
+    {
+        int currentIndex = skyboxDropdown.value;
+        int prevIndex = (currentIndex - 1 + skyboxes.Count) % skyboxes.Count;  // Wrap around to the last if at the first
+        skyboxDropdown.value = prevIndex;
+        OnSkyboxChanged(prevIndex);
+    }
 }
