@@ -452,9 +452,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 48499573}
+  - component: {fileID: 48499576}
   - component: {fileID: 48499574}
   - component: {fileID: 48499575}
-  - component: {fileID: 48499576}
   - component: {fileID: 48499577}
   m_Layer: 5
   m_Name: UI Manager
@@ -538,6 +538,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae879a1369918c044bfd85a09257cdda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newReferenceLibrary: {fileID: 11400000, guid: 7a9d39f226c446744812c9506e787d27,
+    type: 2}
 --- !u!114 &48499577
 MonoBehaviour:
   m_ObjectHideFlags: 0
