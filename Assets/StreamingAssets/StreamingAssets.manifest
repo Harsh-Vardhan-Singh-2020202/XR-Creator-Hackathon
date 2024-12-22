@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3401736756
+CRC: 2228056263
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -37,4 +37,7 @@ AssetBundleManifest:
       Dependencies: {}
     Info_11:
       Name: skybox-test-anonymous
+      Dependencies: {}
+    Info_12:
+      Name: skybox-shapoorji-harsh
       Dependencies: {}
