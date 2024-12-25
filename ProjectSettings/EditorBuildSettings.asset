@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/1-Frame2Ask.unity
     guid: 4755b35b590504809a7525fd2109c2e2
   - enabled: 1
-    path: Assets/Scenes/2-NavigationAssitant.unity
-    guid: 6dbe127815a10b74e9e711ea3733b6a6
+    path: Assets/Scenes/2-NavAssist.unity
+    guid: 608532aaa56507c47a1a754cf53929c0
   - enabled: 1
     path: Assets/Scenes/3-ImmersiveExperience.unity
     guid: 48d3cea5f8ecab34d8d187b4a215dbc2
@@ -22,7 +22,7 @@ EditorBuildSettings:
     guid: 84f8cd253164da04883fcde4ffdc9838
   - enabled: 1
     path: Assets/Scenes/5-MarketPlace.unity
-    guid: dd0e6fdbe5ff89246bf6bdcc6a88ea77
+    guid: 080f7653d93a85c4b87342d74a96c9f8
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
       type: 2}
