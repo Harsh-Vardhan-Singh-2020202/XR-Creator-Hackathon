@@ -1555,10 +1555,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ba11f0ee850a3468b897eb0a85df01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useRemoteBundle: 0
   bundleUrlTemplate: https://drive.google.com/uc?export=download&id={0}
   assetBundleIds:
   - 1fmkjKFP581Myiu9E0UoaFydV8JW3PsS5
   assetName: Monument - Charminar
+  localPrefabs:
+  - {fileID: 2790052338143989385, guid: 7b373201a9e17904dab2349cbd36a104, type: 3}
   downloadButton: {fileID: 9118232740395064561}
   downloadingPrompt: {fileID: 7150175534696325275}
   downloadedPrompt: {fileID: 7112150647181595846}

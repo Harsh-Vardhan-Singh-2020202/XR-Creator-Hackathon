@@ -1168,10 +1168,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ba11f0ee850a3468b897eb0a85df01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useRemoteBundle: 0
   bundleUrlTemplate: https://drive.google.com/uc?export=download&id={0}
   assetBundleIds:
   - 1Kwp0zI3fs12N4YnC9oPz5gJgL61zdoE2
   assetName: Monument - India Gate
+  localPrefabs:
+  - {fileID: 2179662944464165720, guid: 39117e9bd8d7c50469632b508aa76cd8, type: 3}
   downloadButton: {fileID: 7861268520402258761}
   downloadingPrompt: {fileID: 8593584665612040628}
   downloadedPrompt: {fileID: 1313068882980285133}

@@ -6,10 +6,18 @@ using UnityEngine.UI; // For the Button component
 
 public class DownloadModelManager : MonoBehaviour
 {
-    [Header("Asset Bundle Info")]
+    [Header("Source Toggle")]
+    [Tooltip("If true, downloads models from a remote Asset Bundle (Google Drive). If false, uses a locally assigned prefab.")]
+    public bool useRemoteBundle = false;
+
+    [Header("Asset Bundle Info (used when useRemoteBundle = true)")]
     public string bundleUrlTemplate = "https://drive.google.com/uc?export=download&id={0}";
     public List<string> assetBundleIds; // Google Drive file IDs for bundles
     public string assetName = "BundledObject";
+
+    [Header("Local Asset Info (used when useRemoteBundle = false)")]
+    [Tooltip("Prefab(s) to use directly, no download step.")]
+    public List<GameObject> localPrefabs;
 
     [Header("References")]
     private ObjectSpawner objectSpawner; // Reference to the ObjectSpawner
@@ -50,20 +58,34 @@ public class DownloadModelManager : MonoBehaviour
         // Ensure the button and object spawner are assigned
         if (downloadButton != null)
         {
-            // Add listener for the button
             downloadButton.onClick.AddListener(() =>
             {
-                // Example: Download the first model in the list
-                if (assetBundleIds != null && assetBundleIds.Count > 0)
+                if (useRemoteBundle)
                 {
-                    downloadButton.gameObject.SetActive(false);
-                    downloadingPrompt.SetActive(true);
-                    downloadingPrompt.GetComponent<Animator>().enabled = true;
-                    AddModelToSpawner(assetBundleIds[0]);
+                    // Original Drive-based flow
+                    if (assetBundleIds != null && assetBundleIds.Count > 0)
+                    {
+                        downloadButton.gameObject.SetActive(false);
+                        downloadingPrompt.SetActive(true);
+                        downloadingPrompt.GetComponent<Animator>().enabled = true;
+                        AddModelToSpawner(assetBundleIds[0]);
+                    }
+                    else
+                    {
+                        Debug.LogError("No asset bundle IDs provided.");
+                    }
                 }
                 else
                 {
-                    Debug.LogError("No asset bundle IDs provided.");
+                    // Local prefab flow
+                    if (localPrefabs != null && localPrefabs.Count > 0)
+                    {
+                        AddLocalModelToSpawner(localPrefabs[0]);
+                    }
+                    else
+                    {
+                        Debug.LogError("No local prefabs assigned.");
+                    }
                 }
             });
         }
@@ -72,6 +94,8 @@ public class DownloadModelManager : MonoBehaviour
             Debug.LogError("Download button reference is missing.");
         }
     }
+
+    // ---------- Remote (Drive) path — unchanged ----------
 
     public void AddModelToSpawner(string bundleId)
     {
@@ -135,12 +159,31 @@ public class DownloadModelManager : MonoBehaviour
         if (obj != null)
         {
             objectSpawner.AddToSpawnerList(obj);
-
             Debug.Log($"Model '{obj.name}' successfully added to spawner and dropdown.");
         }
         else
         {
             Debug.LogError($"Asset '{assetName}' not found in the AssetBundle.");
         }
+    }
+
+    // ---------- Local prefab path — new ----------
+
+    public void AddLocalModelToSpawner(GameObject prefab)
+    {
+        if (prefab == null)
+        {
+            Debug.LogError("Local prefab reference is null.");
+            return;
+        }
+
+        // No download step needed, but keep UI/UX consistent with the remote flow
+        if (downloadButton != null) downloadButton.gameObject.SetActive(false);
+        if (downloadedPrompt != null) downloadedPrompt.SetActive(true);
+
+        objectSpawner.AddToSpawnerList(prefab);
+        Debug.Log($"Local model '{prefab.name}' successfully added to spawner and dropdown.");
+
+        LLM.StartChat(promptRequest);
     }
 }

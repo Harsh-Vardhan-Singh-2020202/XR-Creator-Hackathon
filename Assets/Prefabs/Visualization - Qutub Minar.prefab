@@ -1831,10 +1831,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ba11f0ee850a3468b897eb0a85df01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useRemoteBundle: 0
   bundleUrlTemplate: https://drive.google.com/uc?export=download&id={0}
   assetBundleIds:
   - 1t5Kb70TBeM0qbl7jC4GHK_cwLHisgRkt
   assetName: Monument - Qutub Minar
+  localPrefabs:
+  - {fileID: 6071590217191456868, guid: 0941b5f66056f954d8835b965e487937, type: 3}
   downloadButton: {fileID: 7490123770870732419}
   downloadingPrompt: {fileID: 950900102719265734}
   downloadedPrompt: {fileID: 475942666545475592}

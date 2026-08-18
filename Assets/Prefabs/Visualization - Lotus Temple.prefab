@@ -1377,10 +1377,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ba11f0ee850a3468b897eb0a85df01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useRemoteBundle: 0
   bundleUrlTemplate: https://drive.google.com/uc?export=download&id={0}
   assetBundleIds:
   - 12Cr8sj2utvnj69Xv0aeYZIq89Nuwz6xo
   assetName: Monument - Lotus Temple
+  localPrefabs:
+  - {fileID: 3849984275675203477, guid: 5fb2888761cd63a47bbf2de9434cfdc9, type: 3}
   downloadButton: {fileID: 3244022420839798222}
   downloadingPrompt: {fileID: 1045016339593900685}
   downloadedPrompt: {fileID: 8704217397724587381}

@@ -851,10 +851,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ba11f0ee850a3468b897eb0a85df01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useRemoteBundle: 0
   bundleUrlTemplate: https://drive.google.com/uc?export=download&id={0}
   assetBundleIds:
   - 1UDGQziLMWqzj-EFeOl9vaVLII5ymfCoe
   assetName: Monument - Red Fort
+  localPrefabs:
+  - {fileID: 3234126410810996067, guid: de10fda9ceb8fe748bd46659bea3688a, type: 3}
   downloadButton: {fileID: 1224028002517842837}
   downloadingPrompt: {fileID: 699746609631709627}
   downloadedPrompt: {fileID: 6166657992769475492}

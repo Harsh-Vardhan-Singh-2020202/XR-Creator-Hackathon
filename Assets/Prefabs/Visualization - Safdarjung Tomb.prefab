@@ -1565,10 +1565,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ba11f0ee850a3468b897eb0a85df01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useRemoteBundle: 0
   bundleUrlTemplate: https://drive.google.com/uc?export=download&id={0}
   assetBundleIds:
   - 1EqlBtwfC_Nbcom3ssy9p3rUNHGZxeAE8
   assetName: Monument - Safdarjung Tomb
+  localPrefabs:
+  - {fileID: 56950470237597996, guid: 3f6223e71f2431349b6b0d32c1ab1ad9, type: 3}
   downloadButton: {fileID: 3697306828898937528}
   downloadingPrompt: {fileID: 1081338942598511471}
   downloadedPrompt: {fileID: 1734670771154237876}

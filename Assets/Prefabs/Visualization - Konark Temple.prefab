@@ -1423,10 +1423,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ba11f0ee850a3468b897eb0a85df01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useRemoteBundle: 0
   bundleUrlTemplate: https://drive.google.com/uc?export=download&id={0}
   assetBundleIds:
   - 1ZfgNCg2-V6nGBuEmyRrxeFCI-OJRqWBL
   assetName: Monument - Konark Temple
+  localPrefabs:
+  - {fileID: 2135263634466408587, guid: 13817f3b4b4abca44857e9f26172599d, type: 3}
   downloadButton: {fileID: 8610151072866459921}
   downloadingPrompt: {fileID: 4510038148681260832}
   downloadedPrompt: {fileID: 6146232633565485583}

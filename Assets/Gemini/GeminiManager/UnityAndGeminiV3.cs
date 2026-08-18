@@ -50,11 +50,20 @@ public class Message
 
 public class UnityAndGeminiV3 : MonoBehaviour
 {
-    [Header("JSON API Configuration")]
-    public TextAsset jsonApi;
+    [Header("JSON API Configuration (legacy - unused if user key is set)")]
+    public TextAsset jsonApi; // kept for reference, no longer read by default
     private string apiKey = "";
-    private string apiEndpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent";
+    private string apiEndpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent";
 
+    [Header("User API Key Input")]
+    [Tooltip("TMP_InputField where the user pastes their own Gemini API key.")]
+    public TMP_InputField apiKeyInputField;
+    [Tooltip("Button to confirm/apply the pasted key.")]
+    public Button setKeyButton;
+    [Tooltip("Optional: shown when no key has been set yet, hidden once one is.")]
+    public GameObject noKeyWarning;
+
+    private bool keyIsSet = false;
 
     [Header("ChatBot Function")]
     public TMP_Text inputField;
@@ -72,13 +81,44 @@ public class UnityAndGeminiV3 : MonoBehaviour
 
     void Start()
     {
-        UnityAndGeminiKey jsonApiKey = JsonUtility.FromJson<UnityAndGeminiKey>(jsonApi.text);
-        apiKey = jsonApiKey.key;
         chatHistory = new Content[] { };
+
+        if (setKeyButton != null)
+        {
+            setKeyButton.onClick.AddListener(ApplyUserApiKey);
+        }
+
+        if (noKeyWarning != null)
+        {
+            noKeyWarning.SetActive(true);
+        }
+    }
+
+    public void ApplyUserApiKey()
+    {
+        if (apiKeyInputField == null || string.IsNullOrWhiteSpace(apiKeyInputField.text))
+        {
+            Debug.LogError("No API key entered.");
+            return;
+        }
+
+        apiKey = apiKeyInputField.text.Trim();
+        keyIsSet = true;
+
+        if (noKeyWarning != null)
+            noKeyWarning.SetActive(false);
+
+        Debug.Log("Gemini API key set from user input.");
     }
 
     public void SendChat()
     {
+        if (!keyIsSet)
+        {
+            Debug.LogError("No API key set. Please enter your Gemini API key first.");
+            return;
+        }
+
         if (inputField.text == "")
             return;
 
@@ -99,6 +139,12 @@ public class UnityAndGeminiV3 : MonoBehaviour
 
     public void StartChat(string userMessage)
     {
+        if (!keyIsSet)
+        {
+            Debug.LogError("No API key set. Please enter your Gemini API key first.");
+            return;
+        }
+
         // Append restrictions
         string restriction = "Check whether this prompt is related to history, historical monuments, or historical artifacts. If yes, type nothing and then answer their question. Otherwise politely declien citing that you are a history guide.";
         string restrictedUserMessage = userMessage + " " + restriction;
@@ -137,7 +183,6 @@ public class UnityAndGeminiV3 : MonoBehaviour
 
         byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonData);
 
-        // Create a UnityWebRequest with the JSON data
         using (UnityWebRequest www = new UnityWebRequest(url, "POST"))
         {
             www.uploadHandler = new UploadHandlerRaw(jsonToSend);
@@ -156,7 +201,6 @@ public class UnityAndGeminiV3 : MonoBehaviour
                 Response response = JsonUtility.FromJson<Response>(www.downloadHandler.text);
                 if (response.candidates.Length > 0 && response.candidates[0].content.parts.Length > 0)
                 {
-                    // This is the response to your request
                     string reply = response.candidates[0].content.parts[0].text;
                     Content botContent = new Content
                     {
@@ -168,10 +212,8 @@ public class UnityAndGeminiV3 : MonoBehaviour
                     };
                     Debug.Log(reply);
 
-                    // Send the LLM's response to the chat
                     SendMessageToChat("Narada: " + reply, textObj_LLM, GetSelectedFont());
 
-                    // Update chat history for the next interaction
                     contentsList.Add(botContent);
                     chatHistory = contentsList.ToArray();
                 }
@@ -188,18 +230,16 @@ public class UnityAndGeminiV3 : MonoBehaviour
         Message newMessage = new Message();
         newMessage.text = text;
 
-        // Instantiate the text object and set its font
         GameObject newText = Instantiate(text_Object, chatPanel.transform);
         newMessage.textObject = newText.GetComponent<TMP_Text>();
         newMessage.textObject.text = newMessage.text;
-        newMessage.textObject.font = font; // Set the appropriate font
+        newMessage.textObject.font = font;
 
         messageList.Add(newMessage);
     }
 
     private string GetLanguageRequest()
     {
-        // Return the appropriate language request based on the dropdown value
         switch (languageDropdown.value)
         {
             case 0:
@@ -213,7 +253,6 @@ public class UnityAndGeminiV3 : MonoBehaviour
 
     private TMP_FontAsset GetSelectedFont()
     {
-        // Return the appropriate font based on the dropdown value
         switch (languageDropdown.value)
         {
             case 0:
@@ -227,14 +266,11 @@ public class UnityAndGeminiV3 : MonoBehaviour
 
     public void ClearChat()
     {
-        // Destroy all the message GameObjects in the chat panel
         for (int i = 0; i < messageList.Count; i++)
         {
             Destroy(messageList[i].textObject.gameObject);
         }
-        // Clear the message list
         messageList.Clear();
-        // Reset chatHistory to an empty array to start fresh
         chatHistory = new Content[] { };
     }
 

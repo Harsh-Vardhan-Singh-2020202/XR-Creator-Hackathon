@@ -328,10 +328,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ba11f0ee850a3468b897eb0a85df01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useRemoteBundle: 0
   bundleUrlTemplate: https://drive.google.com/uc?export=download&id={0}
   assetBundleIds:
   - 1cpD19nfbFIV5_YLTaK8B9FGcBVmvJM_P
   assetName: Monument - Gateway Of India
+  localPrefabs:
+  - {fileID: 2259774493934933884, guid: 9045b4fd11d10404eab227d5a905a56f, type: 3}
   downloadButton: {fileID: 2482043181667191817}
   downloadingPrompt: {fileID: 563813548100753409}
   downloadedPrompt: {fileID: 9162394429936230742}
