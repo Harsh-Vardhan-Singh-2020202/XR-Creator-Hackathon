@@ -8,6 +8,10 @@ using System.IO;
 
 public class SkyboxManager : MonoBehaviour
 {
+    [Header("Source Toggle")]
+    [Tooltip("If true, downloads skybox materials from a remote Asset Bundle (Google Drive). If false, uses locally assigned materials only.")]
+    public bool useRemoteBundle = false;
+
     [Header("UI")]
     public TMP_Text inputField;
     public Button[] addButtons;
@@ -15,7 +19,7 @@ public class SkyboxManager : MonoBehaviour
     public Button copyButton;
     public GameObject downloading;
 
-    [Header("Asset Bundle Info")]
+    [Header("Asset Bundle Info (used when useRemoteBundle = true)")]
     public string bundleUrlTemplate = "https://drive.google.com/uc?export=download&id={0}";
 
     [Header("Dropdown")]
@@ -23,7 +27,7 @@ public class SkyboxManager : MonoBehaviour
 
     [Header("Skybox content")]
     public Material defaultSkybox;
-    public List<Material> skyboxes;
+    public List<Material> skyboxes; // Local skyboxes: assign extra materials here directly in the Inspector
 
     private Dictionary<string, AssetBundle> assetBundleCache = new Dictionary<string, AssetBundle>();
 
@@ -31,29 +35,55 @@ public class SkyboxManager : MonoBehaviour
     {
         skyboxes.Add(defaultSkybox);
         skyboxDropdown.options.Add(new TMP_Dropdown.OptionData(defaultSkybox.name));
+
+        // If not using remote bundles, populate dropdown with all locally-assigned skyboxes upfront
+        if (!useRemoteBundle)
+        {
+            for (int i = 0; i < skyboxes.Count; i++)
+            {
+                if (skyboxes[i] == defaultSkybox) continue; // already added above
+                skyboxDropdown.options.Add(new TMP_Dropdown.OptionData(skyboxes[i].name));
+            }
+
+            // No need for the download UI in local mode
+            if (downloading != null) downloading.SetActive(false);
+            foreach (Button addButton in addButtons)
+                if (addButton != null) addButton.gameObject.SetActive(false);
+        }
+
         skyboxDropdown.RefreshShownValue();
 
         // Add listener to handle dropdown value changes
         skyboxDropdown.onValueChanged.AddListener(OnSkyboxChanged);
 
-        // Add listener to handle adding skyboxes   
-
-        foreach (Button addButton in addButtons)
+        // Add listener to handle adding skyboxes via remote bundle (only relevant if useRemoteBundle = true)
+        if (useRemoteBundle)
         {
-            addButton.onClick.AddListener(() =>
+            foreach (Button addButton in addButtons)
             {
-                string name_id = inputField.text;
-                Debug.Log("Link added " + name_id);
-                AddMatToList(name_id);
-            });
+                addButton.onClick.AddListener(() =>
+                {
+                    string name_id = inputField.text;
+                    Debug.Log("Link added " + name_id);
+                    AddMatToList(name_id);
+                });
+            }
         }
 
         // Set the initial skybox (optional)
         OnSkyboxChanged(skyboxDropdown.value);
     }
 
+    // ---------- Remote (Drive) path — unchanged ----------
+
     public void AddMatToList(string bundleId)
     {
+        if (!useRemoteBundle)
+        {
+            Debug.LogWarning("useRemoteBundle is false; ignoring remote add request.");
+            return;
+        }
+
         string bundleUrl = string.Format(bundleUrlTemplate, bundleId);
         Debug.Log("Accessed url: " + bundleUrl);
         StartCoroutine(DownloadMaterial(bundleUrl));
@@ -68,11 +98,9 @@ public class SkyboxManager : MonoBehaviour
         clearButton.gameObject.SetActive(false);
         copyButton.gameObject.SetActive(false);
 
-        // Check if the bundle is already in cache
         if (assetBundleCache.TryGetValue(bundleUrl, out var cachedBundle))
         {
             Debug.Log("Bundle already present in local cache");
-            //AddToListAndDropdown(cachedBundle);
             yield break;
         }
 
@@ -117,30 +145,25 @@ public class SkyboxManager : MonoBehaviour
 
     private void AddToListAndDropdown(AssetBundle assetBundle)
     {
-        // Get all asset names in the bundle
         string[] assetNames = assetBundle.GetAllAssetNames();
         string cleanAssetName = Path.GetFileNameWithoutExtension(assetNames[0]);
 
         Debug.Log("Bundle name: " + cleanAssetName);
 
-        // Load the GameObject (which has the Skybox component) from the asset bundle
         GameObject skyboxObject = assetBundle.LoadAsset<GameObject>(cleanAssetName);
 
         if (skyboxObject != null)
         {
             Debug.Log("Loaded GameObject: " + skyboxObject.name);
 
-            // Get the Skybox component attached to the GameObject
             Skybox skyboxComponent = skyboxObject.GetComponent<Skybox>();
 
             if (skyboxComponent != null)
             {
-                // Access the custom skybox material from the Skybox component
                 Material customSkybox = skyboxComponent.material;
 
                 if (customSkybox != null)
                 {
-                    // Reassign the shader to "Skybox/Cubemap" to ensure the material renders correctly
                     customSkybox.shader = Shader.Find("Skybox/Cubemap");
 
                     inputField.text = "";
@@ -153,19 +176,12 @@ public class SkyboxManager : MonoBehaviour
 
                     Debug.Log("Custom Skybox Material: " + customSkybox.name);
 
-                    // Add the material to the list if it isn't already present
                     if (!skyboxes.Contains(customSkybox))
                     {
                         skyboxes.Add(customSkybox);
-
-                        // Add the material's name to the dropdown options
                         skyboxDropdown.options.Add(new TMP_Dropdown.OptionData(customSkybox.name));
                         skyboxDropdown.RefreshShownValue();
-
-                        // Set the dropdown value to the newly added skybox
                         skyboxDropdown.value = skyboxes.Count - 1;
-
-                        // Change the skybox to the recently added skybox
                         OnSkyboxChanged(skyboxes.Count - 1);
                     }
                 }
@@ -203,11 +219,12 @@ public class SkyboxManager : MonoBehaviour
         }
     }
 
+    // ---------- Shared ----------
+
     private void OnSkyboxChanged(int index)
     {
         if (index >= 0 && index < skyboxes.Count)
         {
-            // Change the skybox to the selected material
             RenderSettings.skybox = skyboxes[index];
             Debug.Log("Skybox changed to: " + skyboxes[index].name);
         }
@@ -232,20 +249,18 @@ public class SkyboxManager : MonoBehaviour
         }
     }
 
-    // Move to the next skybox in the list (with wrapping)
     public void NextSkybox()
     {
         int currentIndex = skyboxDropdown.value;
-        int nextIndex = (currentIndex + 1) % skyboxes.Count;  // Wrap around to the first if at the last
+        int nextIndex = (currentIndex + 1) % skyboxes.Count;
         skyboxDropdown.value = nextIndex;
         OnSkyboxChanged(nextIndex);
     }
 
-    // Move to the previous skybox in the list (with wrapping)
     public void PreviousSkybox()
     {
         int currentIndex = skyboxDropdown.value;
-        int prevIndex = (currentIndex - 1 + skyboxes.Count) % skyboxes.Count;  // Wrap around to the last if at the first
+        int prevIndex = (currentIndex - 1 + skyboxes.Count) % skyboxes.Count;
         skyboxDropdown.value = prevIndex;
         OnSkyboxChanged(prevIndex);
     }

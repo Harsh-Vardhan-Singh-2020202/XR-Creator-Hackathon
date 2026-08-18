@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.57910144, g: 0.32959014, b: 0.11346411, a: 1}
+  m_IndirectSpecularColor: {r: 0.7910152, g: 0.613769, b: 0.37377888, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -469,6 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae879a1369918c044bfd85a09257cdda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newReferenceLibrary: {fileID: 0}
 --- !u!114 &240839394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21664,6 +21665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3deef2b64f21be749adaa363cb740794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useRemoteBundle: 0
   inputField: {fileID: 402743199}
   addButtons:
   - {fileID: 748031576}
@@ -21674,7 +21676,10 @@ MonoBehaviour:
   bundleUrlTemplate: https://drive.google.com/uc?export=download&id={0}
   skyboxDropdown: {fileID: 354746747}
   defaultSkybox: {fileID: 2100000, guid: d4a56a3425662ed43a99e43b39fdaf41, type: 2}
-  skyboxes: []
+  skyboxes:
+  - {fileID: 2100000, guid: d4a56a3425662ed43a99e43b39fdaf41, type: 2}
+  - {fileID: 2100000, guid: a7adae6f735f5ef42a5a73111af8a6be, type: 2}
+  - {fileID: 2100000, guid: 3a76e8dcb339ec04b937bb09aa7f48c6, type: 2}
 --- !u!1 &880930883
 GameObject:
   m_ObjectHideFlags: 0
