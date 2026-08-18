@@ -6,3 +6,5 @@ An extended reality (XR) application built during the XR Creator Hackathon, desi
 * Immersive Experiences: Image-triggered AR overlays that play contextual videos, 3D animations, or spatial audio upon targeting physical landmarks or images.
 * Experience Sharing: Community-driven portal allowing users to upload and explore 360° skyboxes and spatial environments.
 * 3D AR Marketplace: Interactive QR-triggered visual menus allowing patrons to preview dishes and items as real-time 3D models.
+
+https://youtu.be/sGspgbF34l8
